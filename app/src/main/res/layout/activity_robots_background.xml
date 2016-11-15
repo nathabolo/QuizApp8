@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/robot2"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.android.tools.RobotsBackground">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="false"
+            android:text="Below is a list of activities for you to choose, please select one activity at a time"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="16dp"
+            android:background="#e0cdbf"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="Robots History"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/maths_robots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="16dp"
+            android:background="#e0cdbf"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="Maths and Robots"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/robots_tech"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="16dp"
+            android:background="#e0cdbf"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="Robotics Tech"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/robots_society"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="16dp"
+            android:background="#e0cdbf"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="Robots in Society"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
