@@ -1,5 +1,6 @@
 package com.example.android.quizapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -17,12 +19,23 @@ import com.android.tools.RobotsBackground;
 
 public class MainActivity extends AppCompatActivity {
 
+    private WebView mWebView;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Get values from the text views
+        mWebView = new WebView(this);
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        final Activity activity = this;
+        mWebView.setWebViewClient(new WebViewClient(){
+
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                Toast.makeText(activity, description, Toast.LENGTH_SHORT).show();
+            }
+
+        });
+         //Get values from the text views
 
         final TextView startTest = (TextView) findViewById(R.id.robotics_background);
 
@@ -51,9 +64,18 @@ public class MainActivity extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_refresh){
+           mWebView.reload();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
+
 
 

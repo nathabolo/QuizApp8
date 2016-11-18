@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android.quizapp.R;
@@ -24,13 +23,14 @@ public class RobotsBackground extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         setContentView(R.layout.activity_robots_background);
+
         //Get values from the text views
 
-        final TextView Robotshistory = (TextView) findViewById(R.id.history);
+        final TextView robotsHistory = (TextView) findViewById(R.id.history);
 
         //Set the values to OnclickListener
 
-        Robotshistory.setOnClickListener(new View.OnClickListener() {
+        robotsHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -39,6 +39,7 @@ public class RobotsBackground extends AppCompatActivity {
                 Intent historyIntent = new Intent(RobotsBackground.this,
 
                         RobotsHistory.class);
+
                 //Start a new activity
 
                 startActivity(historyIntent);

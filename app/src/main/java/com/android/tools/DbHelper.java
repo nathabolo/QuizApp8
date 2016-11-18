@@ -4,19 +4,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Switch;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by User7 on 2016/11/14.
- */
-public class DbHelper {
-
+public class DbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "roboQuiz";
+    private static final String DATABASE_NAME = "robotsQuiz";
     // tasks table name
     private static final String TABLE_QUEST = "quest";
     // tasks Table Columns names
@@ -26,17 +22,13 @@ public class DbHelper {
     private static final String KEY_OPTA = "opta"; //option a
     private static final String KEY_OPTB = "optb"; //option b
     private static final String KEY_OPTC = "optc"; //option c
-    private Context context;
     private SQLiteDatabase dbase;
 
-    /**
-     * @param context
-     */
     public DbHelper(Context context) {
-        super();
-        this.context = context;
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    @Override
     public void onCreate(SQLiteDatabase db) {
         dbase = db;
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_QUEST + " ( "
@@ -49,18 +41,19 @@ public class DbHelper {
     }
 
     private void addQuestions() {
-        Questions q1 = new Questions("What is JP?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "Jasa Programmer");
+        Question q1 = new Question("What is a robot?", "It is a machine", "It is a car", "Is a machine you can use to manipulate tasks", "Is a machine you can use to manipulate tasks");
         this.addQuestion(q1);
-        Questions q2 = new Questions("where the JP place?", "Monas, Jakarta", "Gelondong, Bangun Tapan, bantul", "Gelondong, Bangun Tapan, bandul", "Gelondong, Bangun Tapan, bantul");
+        Question q2 = new Question("We have two types of robots, namely _______________?", " Machine and Human robots", "Coputer robots", "Leggo robots and Industrial robots", "Leggo robots and Industrial robots");
         this.addQuestion(q2);
-        Questions q3 = new Questions("who is CEO of the JP?", "Usman and Jack", "Jack and Rully", "Rully and Usman", "Rully and Usman");
+        Question q3 = new Question("What is the meaning of Leggo?", "Play with me", "Lets Play together", "Play well", "Play well");
         this.addQuestion(q3);
-        Questions q4 = new Questions("what do you know about JP?", "JP is programmer home", "JP also realigy home", "all answer is true", "all answer is true");
+        Question q4 = new Question("In which year was Leggo founded?", "1980", "1991", "1932", "1932");
         this.addQuestion(q4);
-        Questions q5 = new Questions("what do you learn in JP?", "Realigy", "Programming", "all answer is true", "all answer is true");
+        Question q5 = new Question("Who is the founder of Leggo foundation?", "Napolion Stardard", "Steve Meyer", "Kjeld Kirk Kristiansen", "Kjeld Kirk Kristiansen");
         this.addQuestion(q5);
     }
 
+    @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUEST);
@@ -69,7 +62,7 @@ public class DbHelper {
     }
 
     // Adding new question
-    public void addQuestion(Questions quest) {
+    public void addQuestion(Question quest) {
         //SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_QUES, quest.getQUESTION());
@@ -81,8 +74,8 @@ public class DbHelper {
         dbase.insert(TABLE_QUEST, null, values);
     }
 
-    public List<Questions> getAllQuestions() {
-        List<Questions> quesList = new ArrayList<Questions>();
+    public List<Question> getAllQuestions() {
+        List<Question> quesList = new ArrayList<Question>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_QUEST;
         dbase = this.getReadableDatabase();
@@ -90,7 +83,7 @@ public class DbHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Questions quest = new Questions();
+                Question quest = new Question();
                 quest.setID(cursor.getInt(0));
                 quest.setQUESTION(cursor.getString(1));
                 quest.setANSWER(cursor.getString(2));
@@ -104,11 +97,6 @@ public class DbHelper {
         return quesList;
     }
 
-    private SQLiteDatabase getReadableDatabase() {
-
-        return getReadableDatabase();
-    }
-
     public int rowcount() {
         int row = 0;
         String selectQuery = "SELECT  * FROM " + TABLE_QUEST;
@@ -117,10 +105,4 @@ public class DbHelper {
         row = cursor.getCount();
         return row;
     }
-
-    private SQLiteDatabase getWritableDatabase() {
-        return getWritableDatabase();
-    }
 }
-
-

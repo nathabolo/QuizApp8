@@ -3,11 +3,12 @@
     <string name="robots_background">Robots background</string>
     <string name="robots_society">Robots society</string>
     <string name="robots_tech">Robots and technology</string>
+    <string name="score">Your Results</string>
     <string name="robots_maths">Robots and mathematics</string>
     <string name="robots_history">Robots history</string>
     <string name="robots">What is a robot?</string>
     <string name="robots2">Types of robots</string>
     <string name="robots3">Types of robotics technonology</string>
-    <string name="refresh">Refresh</string>
+    <string name="refresh_button">Refresh</string>
     <string name="button1">Next</string>
 </resources>

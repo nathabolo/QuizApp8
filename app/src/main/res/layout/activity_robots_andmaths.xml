@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="false">
+    android:fillViewport="true">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -38,14 +38,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/maths_robots1"
                 android:layout_marginBottom="24dp"
-                android:text="We have two types of robots, namely Industrial robots and __________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp" />
 
 
             <RadioGroup
-                android:id="@+id/radioSex"
+                android:id="@+id/radioGroup2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -72,70 +72,17 @@
                     android:layout_marginBottom="16dp"
                     android:textSize="20dp" />
 
-                <RadioButton
-                    android:id="@+id/tech4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="20dp" />
 
-                <RadioButton
-                    android:id="@+id/tech5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="20dp" />
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/button1"
+                    android:layout_marginTop="170dp"
+                    android:layout_marginLeft="15dp"/>
+
 
             </RadioGroup>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="We have two types of robots, namely Industrial robots and __________________"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/tech6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="20dp" />
-            </RadioGroup>
-
         </LinearLayout>
 
     </RelativeLayout>

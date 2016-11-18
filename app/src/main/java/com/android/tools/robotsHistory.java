@@ -1,7 +1,7 @@
 package com.android.tools;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,12 +16,11 @@ import com.example.android.quizapp.R;
 
 import java.util.List;
 
-public class RobotsHistory extends AppCompatActivity {
-
-    List<Questions> quesList;
+public class RobotsHistory extends Activity {
+    List<Question> quesList;
     int score = 0;
     int qid = 0;
-    Questions currentQ;
+    Question currentQ;
     TextView txtQuestion;
     RadioButton rda, rdb, rdc;
     Button butNext;
@@ -29,21 +28,14 @@ public class RobotsHistory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_robots_history);
-
-        //A code for back button
-
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
+        setContentView(R.layout.robots_history);
         DbHelper db = new DbHelper(this);
         quesList = db.getAllQuestions();
         currentQ = quesList.get(qid);
-        txtQuestion = (TextView) findViewById(R.id.question1);
-        rda = (RadioButton) findViewById(R.id.tech1);
-        rdb = (RadioButton) findViewById(R.id.tech2);
-        rdc = (RadioButton) findViewById(R.id.tech3);
+        txtQuestion = (TextView) findViewById(R.id.textView1);
+        rda = (RadioButton) findViewById(R.id.radio0);
+        rdb = (RadioButton) findViewById(R.id.radio1);
+        rdc = (RadioButton) findViewById(R.id.radio2);
         butNext = (Button) findViewById(R.id.button1);
         setQuestionView();
         butNext.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +52,7 @@ public class RobotsHistory extends AppCompatActivity {
                     currentQ = quesList.get(qid);
                     setQuestionView();
                 } else {
-                    Intent intent = new Intent(RobotsHistory.this, Results.class);
+                    Intent intent = new Intent(RobotsHistory.this, ResultActivity.class);
                     Bundle b = new Bundle();
                     b.putInt("score", score); //Your score
                     intent.putExtras(b); //Put your score to your next Intent
@@ -71,8 +63,14 @@ public class RobotsHistory extends AppCompatActivity {
         });
     }
 
-    private void setQuestionView() {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_quiz, menu);
+        return true;
+    }
 
+    private void setQuestionView() {
         txtQuestion.setText(currentQ.getQUESTION());
         rda.setText(currentQ.getOPTA());
         rdb.setText(currentQ.getOPTB());
@@ -81,26 +79,14 @@ public class RobotsHistory extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                onBackPressed();
+                finish();
+
                 return true;
-            default:
-                return super.onOptionsItemSelected(menuItem);
         }
-
+        return super.onOptionsItemSelected(item);
     }
-
-    //Get action bar into an activity
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
 }
-
-
