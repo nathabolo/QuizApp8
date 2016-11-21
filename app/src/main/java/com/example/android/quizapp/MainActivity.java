@@ -2,12 +2,15 @@ package com.example.android.quizapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -56,6 +59,72 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    TextView textView;
+    int screenWidth, currentMsg;
+    String[] msgArray = new String[] {"A robot is a machine one can manupulate to perform a variety of tasks!!!"};
+    Animation.AnimationListener myAnimationListener;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        textView = (TextView) findViewById(R.id.animation);
+
+        // Get the screen width
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        screenWidth = size.x;
+
+        // Set the first message
+        textView.setText(msgArray[0]);
+        // Measure the size of textView
+        textView.measure(0,0);
+        // Get textView width
+        int textWidth = textView.getMeasuredWidth();
+        // Create the animation
+        Animation animation = new TranslateAnimation(-textWidth, screenWidth, 0, 0);
+        animation.setDuration(8000);
+        animation.setRepeatMode(Animation.ZORDER_TOP);
+        animation.setRepeatCount(Animation.INFINITE);
+
+        // Create the animation listener
+        myAnimationListener = new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // If out of messages loop from start
+                if (++currentMsg >= msgArray.length)
+                    currentMsg = 0;
+                // Set the next msg
+                textView.setText(msgArray[currentMsg]);
+                // Measure the size of textView // this is important
+                textView.measure(0, 0);
+                // Get textView width
+                int textWidth = textView.getMeasuredWidth();
+                // Create the animation
+                animation = new TranslateAnimation(-textWidth, screenWidth, 0, 0);
+
+                animation.setDuration(8000);
+                animation.setRepeatMode(Animation.ZORDER_TOP);
+                animation.setRepeatCount(Animation.INFINITE);
+                animation.setAnimationListener(myAnimationListener);
+                textView.setAnimation(animation);
+            }
+        };
+        animation.setAnimationListener(myAnimationListener);
+
+        textView.setAnimation(animation);
     }
 
     //Get action bar into an activity

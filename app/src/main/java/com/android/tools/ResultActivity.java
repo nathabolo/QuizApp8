@@ -34,7 +34,7 @@ public class ResultActivity extends Activity {
 		case 3:t.setText("Sorry!!! Keep on trying to achieve better results");
 		case 4:t.setText("It seems like you read a lot about robotics");
 		break;
-		case 5:t.setText("Correct!!! Congraculations you are a pro");
+		case 5:t.setText("Congraculations you are a pro!!!");
 		break;
 		}
 

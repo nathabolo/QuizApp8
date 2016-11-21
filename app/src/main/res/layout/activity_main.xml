@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="false"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,13 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="64dp"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:singleLine="false"
-            android:text="A robot is a machine one can manupulate to perform a variety of tasks!!! Please click on start test navigate to the next screen where you will be presented with topics to choose"
+            android:id="@+id/animation"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30dp" />
 

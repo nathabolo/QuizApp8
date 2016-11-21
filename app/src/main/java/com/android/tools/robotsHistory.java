@@ -1,12 +1,17 @@
 package com.android.tools;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -16,7 +21,7 @@ import com.example.android.quizapp.R;
 
 import java.util.List;
 
-public class RobotsHistory extends Activity {
+public class RobotsHistory extends AppCompatActivity {
     List<Question> quesList;
     int score = 0;
     int qid = 0;
@@ -24,50 +29,128 @@ public class RobotsHistory extends Activity {
     TextView txtQuestion;
     RadioButton rda, rdb, rdc;
     Button butNext;
+    private ActionBar actionBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+        protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.robots_history);
+
+        //A code for back button
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+
         DbHelper db = new DbHelper(this);
-        quesList = db.getAllQuestions();
-        currentQ = quesList.get(qid);
-        txtQuestion = (TextView) findViewById(R.id.textView1);
-        rda = (RadioButton) findViewById(R.id.radio0);
-        rdb = (RadioButton) findViewById(R.id.radio1);
-        rdc = (RadioButton) findViewById(R.id.radio2);
-        butNext = (Button) findViewById(R.id.button1);
-        setQuestionView();
-        butNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RadioGroup grp = (RadioGroup) findViewById(R.id.radioGroup1);
-                RadioButton answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
-                Log.d("yourans", currentQ.getANSWER() + " " + answer.getText());
-                if (currentQ.getANSWER().equals(answer.getText())) {
-                    score++;
-                    Log.d("score", "Your score" + score);
+            quesList = db.getAllQuestions();
+            currentQ = quesList.get(qid);
+            txtQuestion = (TextView) findViewById(R.id.textView1);
+            rda = (RadioButton) findViewById(R.id.radio0);
+            rdb = (RadioButton) findViewById(R.id.radio1);
+            rdc = (RadioButton) findViewById(R.id.radio2);
+            butNext = (Button) findViewById(R.id.button1);
+            setQuestionView();
+            butNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RadioGroup grp = (RadioGroup) findViewById(R.id.radioGroup1);
+                    RadioButton answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
+                    Log.d("yourans", currentQ.getANSWER() + " " + answer.getText());
+                    if (currentQ.getANSWER().equals(answer.getText())) {
+                        score++;
+                        Log.d("score", "Your score" + score);
+                    }
+                    if (qid < 5) {
+                        currentQ = quesList.get(qid);
+                        setQuestionView();
+                    } else {
+                        Intent intent = new Intent(RobotsHistory.this, ResultActivity.class);
+                        Bundle b = new Bundle();
+                        b.putInt("score", score); //Your score
+                        intent.putExtras(b); //Put your score to your next Intent
+                        startActivity(intent);
+                        finish();
+                    }
                 }
-                if (qid < 5) {
-                    currentQ = quesList.get(qid);
-                    setQuestionView();
-                } else {
-                    Intent intent = new Intent(RobotsHistory.this, ResultActivity.class);
-                    Bundle b = new Bundle();
-                    b.putInt("score", score); //Your score
-                    intent.putExtras(b); //Put your score to your next Intent
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
-    }
+            });
+        }
+
+    TextView textView;
+    int screenWidth, currentMsg;
+    String[] msgArray = new String[] {"Robotics History"};
+    Animation.AnimationListener myAnimationListener;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        textView = (TextView) findViewById(R.id.animation2);
+
+        // Get the screen width
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        screenWidth = size.x;
+
+        // Set the first message
+        textView.setText(msgArray[0]);
+        // Measure the size of textView
+        textView.measure(0, 0);
+        // Get textView width
+        int textWidth = textView.getMeasuredWidth();
+        // Create the animation
+        Animation animation = new TranslateAnimation(-textWidth, screenWidth, 0, 0);
+        animation.setDuration(8000);
+        animation.setRepeatMode(Animation.RESTART);
+        animation.setRepeatCount(Animation.INFINITE);
+
+        // Create the animation listener
+        myAnimationListener = new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // If out of messages loop from start
+                if (++currentMsg >= msgArray.length)
+                    currentMsg = 0;
+                // Set the next msg
+                textView.setText(msgArray[currentMsg]);
+                // Measure the size of textView // this is important
+                textView.measure(0, 0);
+                // Get textView width
+                int textWidth = textView.getMeasuredWidth();
+                // Create the animation
+                animation = new TranslateAnimation(-textWidth, screenWidth, 0, 0);
+
+                animation.setDuration(8000);
+                animation.setRepeatMode(Animation.RESTART);
+                animation.setRepeatCount(Animation.INFINITE);
+                animation.setAnimationListener(myAnimationListener);
+                textView.setAnimation(animation);
+            }
+        };
+        animation.setAnimationListener(myAnimationListener);
+
+        textView.setAnimation(animation);
+    }
+
+
+    //Get action bar into an activity
+
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_quiz, menu);
-        return true;
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     private void setQuestionView() {
@@ -79,14 +162,13 @@ public class RobotsHistory extends Activity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
             case android.R.id.home:
-                finish();
-
+                onBackPressed();
                 return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
         }
-        return super.onOptionsItemSelected(item);
     }
 }

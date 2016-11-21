@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="false">
+    android:fillViewport="true">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -25,13 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="false"
-                android:text="Robotics technology"
+                android:id="@+id/animation3"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30dp" />
 
@@ -40,18 +34,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="We have two types of robots, namely Industrial robots and __________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp" />
 
 
             <RadioGroup
-                android:id="@+id/radioSex"
+                android:id="@+id/radioGroup3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <RadioButton
-                    android:id="@+id/tech1"
+                    android:id="@+id/roboTech1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -60,7 +53,7 @@
                     android:textSize="20dp" />
 
                 <RadioButton
-                    android:id="@+id/tech2"
+                    android:id="@+id/roboTech2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -69,23 +62,7 @@
 
 
                 <RadioButton
-                    android:id="@+id/tech3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/robots2"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/robots2"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech5"
+                    android:id="@+id/roboTech3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -94,58 +71,13 @@
 
             </RadioGroup>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="We have two types of robots, namely Industrial robots and __________________"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/tech6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/robots2"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/robots2"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/robots2"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/robots2"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:id="@+id/tech10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/robots2"
-                    android:textSize="20dp" />
-            </RadioGroup>
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/button1"
+                android:layout_marginTop="170dp"
+                />
 
 
         </LinearLayout>

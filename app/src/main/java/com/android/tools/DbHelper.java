@@ -51,6 +51,16 @@ public class DbHelper extends SQLiteOpenHelper {
         this.addQuestion(q4);
         Question q5 = new Question("Who is the founder of Leggo foundation?", "Napolion Stardard", "Steve Meyer", "Kjeld Kirk Kristiansen", "Kjeld Kirk Kristiansen");
         this.addQuestion(q5);
+        Question q6 = new Question("How may degrees is equal to one rotation?", "260 degrees", "340 degrees", "360 degrees", "360 degrees");
+        this.addQuestion(q6);
+        Question q7 = new Question("Given 56mm as the diameter of a wheel, calculate the circumference of the wheel?", "70mm", "10mm", "76mm", "76mm");
+        this.addQuestion(q7);
+        Question q8 = new Question("How many rotations are ther in 720 degrees?", "5 rotations", "10 rotations", "2 rotations", "2 rotations");
+        this.addQuestion(q8);
+        Question q9 = new Question("How many degrees are there for 4 rotations?", "1980 rotations", "1500 rotations", "1440 rotations", "1440 rotations");
+        this.addQuestion(q9);
+        Question q10 = new Question("How many wheel rotations are needed to make a U-turn?", "250 rotations", "120 rotations", "270 rotations", "270 rotations");
+        this.addQuestion(q10);
     }
 
     @Override

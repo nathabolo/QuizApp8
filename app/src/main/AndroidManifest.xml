@@ -24,6 +24,12 @@
         <activity
             android:name="com.android.tools.RobotsAndmaths"
             android:label="@string/robots_maths" />
+        <activity
+            android:name="com.android.tools.RobotsAndTech"
+            android:label="@string/robots_tech" />
+        <activity
+            android:name="com.android.tools.RobotsAndSociety"
+            android:label="@string/robots_society" />
         <activity android:name="com.android.tools.ResultActivity"
             android:label="Your Results" />
     </application>

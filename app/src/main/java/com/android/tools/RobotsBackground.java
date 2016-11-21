@@ -1,16 +1,87 @@
 package com.android.tools;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.example.android.quizapp.R;
 
 public class RobotsBackground extends AppCompatActivity {
+
+
+    TextView textView;
+    int screenWidth, currentMsg;
+    String[] msgArray = new String[] {"Below is a list of activities for you to choose, please select one activity at a time"};
+    Animation.AnimationListener myAnimationListener;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        textView = (TextView) findViewById(R.id.animation4);
+
+        // Get the screen width
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        screenWidth = size.x;
+
+        // Set the first message
+        textView.setText(msgArray[0]);
+        // Measure the size of textView
+        textView.measure(0, 0);
+        // Get textView width
+        int textWidth = textView.getMeasuredWidth();
+        // Create the animation
+        Animation animation = new TranslateAnimation(-textWidth, screenWidth, 0, 0);
+        animation.setDuration(8000);
+        animation.setRepeatMode(Animation.RESTART);
+        animation.setRepeatCount(Animation.INFINITE);
+
+        // Create the animation listener
+        myAnimationListener = new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // If out of messages loop from start
+                if (++currentMsg >= msgArray.length)
+                    currentMsg = 0;
+                // Set the next msg
+                textView.setText(msgArray[currentMsg]);
+                // Measure the size of textView // this is important
+                textView.measure(0, 0);
+                // Get textView width
+                int textWidth = textView.getMeasuredWidth();
+                // Create the animation
+                animation = new TranslateAnimation(-textWidth, screenWidth, 0, 0);
+
+                animation.setDuration(8000);
+                animation.setRepeatMode(Animation.RESTART);
+                animation.setRepeatCount(Animation.INFINITE);
+                animation.setAnimationListener(myAnimationListener);
+                textView.setAnimation(animation);
+            }
+        };
+        animation.setAnimationListener(myAnimationListener);
+
+        textView.setAnimation(animation);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +115,7 @@ public class RobotsBackground extends AppCompatActivity {
 
                 startActivity(historyIntent);
 
-                //Get values from the text views
+               //Get values from the text views
 
                 final TextView mathsRobotics = (TextView) findViewById(R.id.maths_robots);
 
