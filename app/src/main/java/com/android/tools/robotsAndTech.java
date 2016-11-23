@@ -23,7 +23,7 @@ public class RobotsAndTech extends AppCompatActivity {
 
     List<Question> quesList;
     int score = 0;
-    int qid = 0;
+    int qid = 10;
     Question currentQ;
     TextView txtQuestion;
     RadioButton rda, rdb, rdc;
@@ -59,7 +59,7 @@ public class RobotsAndTech extends AppCompatActivity {
                     score++;
                     Log.d("score", "Your score" + score);
                 }
-                if (qid < 5) {
+                if ((qid >= 10)&(qid <= 15)) {
                     currentQ = quesList.get(qid);
                     setQuestionView();
                 } else {

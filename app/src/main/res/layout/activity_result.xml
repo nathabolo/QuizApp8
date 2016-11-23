@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.08"
-            android:text="Large Text"
+            android:text="Congraculations you are a pro!!!"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 

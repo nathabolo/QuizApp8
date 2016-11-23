@@ -1,6 +1,7 @@
 package com.android.tools;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -26,7 +29,7 @@ public class RobotsAndmaths extends AppCompatActivity {
     private ViewGroup radioGroup;
     List<Question> quesList;
     int score = 0;
-    int qid = 0;
+    int qid = 5;
     Question currentQ;
     TextView txtQuestion;
     RadioButton rda, rdb, rdc;
@@ -36,8 +39,6 @@ public class RobotsAndmaths extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_robots_andmaths);
-
-        //Get a list of radio buttons in a radio group
 
         //A code for back button
 
@@ -64,7 +65,7 @@ public class RobotsAndmaths extends AppCompatActivity {
                     score++;
                     Log.d("score", "Your score" + score);
                 }
-                if (qid < 5) {
+                if ((qid >= 5)& (qid <= 10)) {
                     currentQ = quesList.get(qid);
                     setQuestionView();
                 } else {
@@ -77,6 +78,72 @@ public class RobotsAndmaths extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    TextView textView;
+    int screenWidth, currentMsg;
+    String[] msgArray = new String[] {"Robots and maths"};
+    Animation.AnimationListener myAnimationListener;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        textView = (TextView) findViewById(R.id.animation5);
+
+        // Get the screen width
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        screenWidth = size.x;
+
+        // Set the first message
+        textView.setText(msgArray[0]);
+        // Measure the size of textView
+        textView.measure(0, 0);
+        // Get textView width
+        int textWidth = textView.getMeasuredWidth();
+        // Create the animation
+        Animation animation = new TranslateAnimation(-textWidth, screenWidth, 0, 0);
+        animation.setDuration(8000);
+        animation.setRepeatMode(Animation.RESTART);
+        animation.setRepeatCount(Animation.INFINITE);
+
+        // Create the animation listener
+        myAnimationListener = new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // If out of messages loop from start
+                if (++currentMsg >= msgArray.length)
+                    currentMsg = 0;
+                // Set the next msg
+                textView.setText(msgArray[currentMsg]);
+                // Measure the size of textView // this is important
+                textView.measure(0, 0);
+                // Get textView width
+                int textWidth = textView.getMeasuredWidth();
+                // Create the animation
+                animation = new TranslateAnimation(-textWidth, screenWidth, 0, 0);
+
+                animation.setDuration(8000);
+                animation.setRepeatMode(Animation.RESTART);
+                animation.setRepeatCount(Animation.INFINITE);
+                animation.setAnimationListener(myAnimationListener);
+                textView.setAnimation(animation);
+            }
+        };
+        animation.setAnimationListener(myAnimationListener);
+
+        textView.setAnimation(animation);
     }
     //Get action bar into an activity
 

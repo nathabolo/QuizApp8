@@ -61,6 +61,26 @@ public class DbHelper extends SQLiteOpenHelper {
         this.addQuestion(q9);
         Question q10 = new Question("How many wheel rotations are needed to make a U-turn?", "250 rotations", "120 rotations", "270 rotations", "270 rotations");
         this.addQuestion(q10);
+        Question q11 = new Question("What is the name for information sent from robot sensors to robot controllers?", "Motor feedback", "temperature", "feedback", "feedback");
+        this.addQuestion(q11);
+        Question q12 = new Question("Which of the following terms refers to the rotational motion of a robot arm?", " yaw", "swivel", "roll", "roll");
+        this.addQuestion(q12);
+        Question q13 = new Question("What is the name for the space inside which a robot unit operates?", "spatial base", "environment", "work envelop", "work envelop");
+        this.addQuestion(q13);
+        Question q14 = new Question("Which of the following terms IS NOT one of the five basic parts of a robot?", "sensor", "end effectors", "peripheral tools", "peripheral tools");
+        this.addQuestion(q14);
+        Question q15 = new Question("Decision support programs are designed to help managers make:?", "visual presentations", "Visual support", "business decisions", "business decisions");
+        this.addQuestion(q15);
+        Question q16 = new Question("Which of the following tasks can you use a robot for?", "Write test", "Do measurements", "Clean toilets", "Clean toilets");
+        this.addQuestion(q16);
+        Question q17 = new Question("You can use a robot to?", "Steal", "Drive", "Perform dangerous tasks", "Perform dangerous tasks");
+        this.addQuestion(q17);
+        Question q18 = new Question("You can use _____________ to perform repetitive tasks?", "A system", "A counter", "A robot", "A robot");
+        this.addQuestion(q18);
+        Question q19 = new Question("Which of the following is not a robot use?", "For performing repetitive tasks", "For cleaning dirty places like toilets", "For driving", "For driving");
+        this.addQuestion(q19);
+        Question q20 = new Question("Robots consist of the following part, namely _________?", "visual parts", "hardware parts", "Motors", "Motors");
+        this.addQuestion(q20);
     }
 
     @Override
