@@ -10,7 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.quizapp.MainActivity">
-    >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -35,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.08"
-            android:text="Congraculations you are a pro!!!"
+            android:text="Oops, try learning harder about robotics!!!"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
